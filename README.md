@@ -8,4 +8,4 @@ To run:
 
 3) start mongoDB locally
 
-4) go to localhost:3000 and start chatting!
+4) go to localhost:8000 and start chatting!
