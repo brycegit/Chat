@@ -18,7 +18,6 @@ class App extends React.Component {
     $.get({
       url: '/messages',
       success: function(data) {
-        console.log('GOT DATA', data);
       },
       error: function(error) {
         console.log('Error getting cat data', error);
@@ -31,8 +30,8 @@ class App extends React.Component {
     });
   }
   componentWillMount() {
-    var user = prompt("What is your username?") || "Anonymous";
-    this.setState({user: user});
+    // var user = prompt("What is your username?") || "Anonymous";
+    // this.setState({user: user});
     this.getData();
   }
   handleSubmit(event) {
@@ -43,7 +42,7 @@ class App extends React.Component {
       user: this.state.user
     };
     var currentMessages = this.state.messages;
-    currentMessages.push({
+    currentMessages.unshift({
       message: this.state.message,
       user: this.state.user
     });
@@ -54,16 +53,12 @@ class App extends React.Component {
       url: '/message',
       data: JSON.stringify(data),
       contentType: 'application/json',
-      success: function(data) {
-        console.log('SUCCESS', data);
-      },
       error: function(error) {
         console.log('Error submitting message', error);
       }
     })
     .done(function(data) {
       $('#form').each(function() {
-        console.log('reset')
         this.reset();
       });
     });

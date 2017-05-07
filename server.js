@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.get('/messages', function (req, res) {
   MongoClient.connect(url, function(err, db) {
     var messages = db.collection('messages');
-    var data = messages.find().toArray(function(error, results) {
+    var data = messages.find().sort({_id: -1}).toArray(function(error, results) {
       if (error) {
         console.log('Error finding messages in DB', error); //todo delete
         res.status(400).send('Error getting messages');
@@ -41,6 +41,6 @@ app.get('*', function(req, res) {
   res.redirect('/');
 });
 
-app.listen(3000, function() {
+app.listen(8000, function() {
   console.log('Server Running');
 });

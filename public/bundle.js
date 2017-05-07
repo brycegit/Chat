@@ -9560,9 +9560,7 @@ var App = function (_React$Component) {
       var that = this;
       $.get({
         url: '/messages',
-        success: function success(data) {
-          console.log('GOT DATA', data);
-        },
+        success: function success(data) {},
         error: function error(_error) {
           console.log('Error getting cat data', _error);
         }
@@ -9575,8 +9573,8 @@ var App = function (_React$Component) {
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var user = prompt("What is your username?") || "Anonymous";
-      this.setState({ user: user });
+      // var user = prompt("What is your username?") || "Anonymous";
+      // this.setState({user: user});
       this.getData();
     }
   }, {
@@ -9589,7 +9587,7 @@ var App = function (_React$Component) {
         user: this.state.user
       };
       var currentMessages = this.state.messages;
-      currentMessages.push({
+      currentMessages.unshift({
         message: this.state.message,
         user: this.state.user
       });
@@ -9600,15 +9598,11 @@ var App = function (_React$Component) {
         url: '/message',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        success: function success(data) {
-          console.log('SUCCESS', data);
-        },
         error: function error(_error2) {
           console.log('Error submitting message', _error2);
         }
       }).done(function (data) {
         $('#form').each(function () {
-          console.log('reset');
           this.reset();
         });
       });
@@ -22133,7 +22127,7 @@ var Form = function Form(_ref) {
       React.createElement(
         "div",
         null,
-        React.createElement("textarea", { onChange: onChange, name: "message", rows: "20", type: "text", placeholder: "Enter message..." })
+        React.createElement("textarea", { onChange: onChange, name: "message", rows: "10", type: "text", placeholder: "Enter message..." })
       ),
       React.createElement(
         "button",
@@ -22188,17 +22182,17 @@ var Message = function Message(_ref) {
   var message = _ref.message;
 
   return React.createElement(
-    'div',
-    null,
+    "div",
+    { className: "message" },
     React.createElement(
-      'p',
+      "p",
       null,
       message.message
     ),
     React.createElement(
-      'p',
+      "p",
       null,
-      'By: ',
+      "By: ",
       message.user
     )
   );
