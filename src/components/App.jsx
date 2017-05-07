@@ -72,6 +72,12 @@ class App extends React.Component {
   }
   signOut(){
     localStorage.name = null;
+    if(!user || user === "null"){
+      user = prompt("Please enter a name!") || "Anonymous";
+    }
+    if(user !== "Anonymous"){
+      localStorage.name = user;
+    }
   }
   render() {
     return (

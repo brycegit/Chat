@@ -3,7 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/chat';
+var url = process.env.MONGOURL || 'mongodb://localhost:27017/chat';
+
 
 app.use(bodyParser.json());
 

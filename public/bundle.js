@@ -9618,6 +9618,12 @@ var App = function (_React$Component) {
     key: 'signOut',
     value: function signOut() {
       localStorage.name = null;
+      if (!user || user === "null") {
+        user = prompt("Please enter a name!") || "Anonymous";
+      }
+      if (user !== "Anonymous") {
+        localStorage.name = user;
+      }
     }
   }, {
     key: 'render',
