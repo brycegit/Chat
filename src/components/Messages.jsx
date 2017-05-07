@@ -4,7 +4,7 @@ var Message = require('./Message.jsx');
 const Messages = ({messages}) => {
   return (
     <div>
-      <h1>Messages</h1>
+      <h1>All Messages</h1>
       {messages.map((message, index) => <Message key={index} message={message}/>)}
     </div>
   );

@@ -30,8 +30,15 @@ class App extends React.Component {
     });
   }
   componentWillMount() {
-    // var user = prompt("What is your username?") || "Anonymous";
-    // this.setState({user: user});
+    var user = localStorage.name || prompt("What is your username?");
+    if(!user || user === "null"){
+      user = prompt("Please enter a name!") || "Anonymous";
+    }
+    if(user !== "Anonymous"){
+      localStorage.name = user;
+    }
+    console.log('user', user)
+    this.setState({user: user});
     this.getData();
   }
   handleSubmit(event) {
@@ -63,9 +70,13 @@ class App extends React.Component {
       });
     });
   }
+  signOut(){
+    localStorage.name = null;
+  }
   render() {
     return (
       <div>
+        <a onClick={this.signOut}>Sign out</a>
         <Form onChange={this.handleChange.bind(this)} onSubmit={this.handleSubmit.bind(this)}/>
         <Messages messages={this.state.messages}/>
       </div>

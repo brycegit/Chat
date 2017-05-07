@@ -1,2 +1,2 @@
-body{text-align:center}textarea{width:500px}.message{border:1px solid #ddd;margin:20px}
+*{text-align:center;color:#383838}textarea,.message{width:500px}.message{border:1px solid #ddd;margin:20px auto}button{padding:10px;background-color:#259a6d;font-size:15px;border:none;color:white;width:85px;border-radius:10px;margin:15px}a{cursor:pointer}@media all and (max-width: 500px){textarea,.message{width:320px}}
 /*# sourceMappingURL=styles.css.map */

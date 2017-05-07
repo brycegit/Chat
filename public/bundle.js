@@ -9573,8 +9573,15 @@ var App = function (_React$Component) {
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      // var user = prompt("What is your username?") || "Anonymous";
-      // this.setState({user: user});
+      var user = localStorage.name || prompt("What is your username?");
+      if (!user || user === "null") {
+        user = prompt("Please enter a name!") || "Anonymous";
+      }
+      if (user !== "Anonymous") {
+        localStorage.name = user;
+      }
+      console.log('user', user);
+      this.setState({ user: user });
       this.getData();
     }
   }, {
@@ -9608,11 +9615,21 @@ var App = function (_React$Component) {
       });
     }
   }, {
+    key: 'signOut',
+    value: function signOut() {
+      localStorage.name = null;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
+        React.createElement(
+          'a',
+          { onClick: this.signOut },
+          'Sign out'
+        ),
         React.createElement(Form, { onChange: this.handleChange.bind(this), onSubmit: this.handleSubmit.bind(this) }),
         React.createElement(Messages, { messages: this.state.messages })
       );
@@ -22119,7 +22136,7 @@ var Form = function Form(_ref) {
     React.createElement(
       "h1",
       null,
-      "Add message"
+      "Add your message..."
     ),
     React.createElement(
       "form",
@@ -22132,7 +22149,7 @@ var Form = function Form(_ref) {
       React.createElement(
         "button",
         { onClick: onSubmit, type: "button" },
-        "Add message"
+        "Add"
       )
     )
   );
@@ -22159,7 +22176,7 @@ var Messages = function Messages(_ref) {
     React.createElement(
       'h1',
       null,
-      'Messages'
+      'All Messages'
     ),
     messages.map(function (message, index) {
       return React.createElement(Message, { key: index, message: message });

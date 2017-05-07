@@ -1,11 +1,41 @@
-body{
+$font-color: #383838;
+$mobile-breakpoint: 500px;
+$el-width-1: 500px;
+$el-width-2: 320px;
+$margin-1: 20px auto;
+$border: 1px solid #ddd;
+
+*{
   text-align: center;
+  color: $font-color;
 }
-textarea{
-  width: 500px;
+
+textarea, .message{
+  width: $el-width-1;
 }
 
 .message{
-  border: 1px solid #ddd;
-  margin: 20px;
+  border: $border;
+  margin: $margin-1;
+}
+
+button{
+  padding: 10px;
+  background-color: rgb(37, 154, 109);
+  font-size: 15px;
+  border: none;
+  color: white;
+  width: 85px;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+a{
+  cursor: pointer;
+}
+
+@media all and (max-width: $mobile-breakpoint){
+  textarea, .message{
+    width: $el-width-2
+  }
 }
